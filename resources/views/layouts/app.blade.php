@@ -44,7 +44,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <select class="select btn" id="roleSelect">
+                                    <select class="select btn selectRol" id="roleSelect">
                                         @if (Auth::user()->tieneRol('1'))
                                             <option>Comprador</option>
                                         @endif
