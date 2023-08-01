@@ -11,9 +11,4 @@ class Categoria extends Model
     protected $table = 'categoria';
     protected $primaryKey = 'cat_id';
     public $timestamps = false;
-
-    public function vehiculos()
-    {
-        return $this->hasMany(Vehiculo::class, 'cat_id_fk', 'cat_id');
-    }
 }

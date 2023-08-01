@@ -19,7 +19,6 @@ class DatosPersonales extends Model
         'data_numero_id',
         'data_telefono',
         'data_correo',
-        'usu_id_fk',
     ];
 
     public function usuario()

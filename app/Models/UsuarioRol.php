@@ -12,4 +12,18 @@ class UsuarioRol extends Model
     protected $primaryKey = 'usuario_rol_id';
     public $timestamps = false;
 
+    protected $fillable = [
+        'usuario_rol_id',
+    ];
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usu_id_fk', 'usu_id');
+    }
+
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class, 'rol_id_fk', 'rol_id');
+    }
+
 }

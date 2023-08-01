@@ -26,6 +26,22 @@ class User extends Authenticatable
         'password',
     ];
 
+
+    public function datosPersonales()
+    {
+        return $this->hasOne(DatosPersonales::class, 'usu_id_fk', 'usu_id');
+    }
+
+    public function tieneRol($rol)
+    {
+        return $this->usuarioRol->where('rol_id_fk', $rol)->count() > 0;
+    }
+
+    public function usuarioRol()
+    {
+        return $this->hasMany(UsuarioRol::class, 'usu_id_fk', 'usu_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
