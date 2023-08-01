@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container shadow p-4">
+<div class="titleForm">
     <h2>Editar Perfil</h2>
+    <a href="/" class="btn btn-light btnHome">
+        <img src="{{asset('assets/img/Home.png')}}" alt="">
+    </a>
+</div>
     @if(session('success'))
         <div class="alert alert-success" id="success-alert">
             {{ session('success') }}

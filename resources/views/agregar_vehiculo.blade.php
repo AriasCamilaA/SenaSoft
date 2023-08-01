@@ -4,7 +4,12 @@
 
 <link rel="stylesheet" href="{{asset('assets/css/vehiculos.css')}}">
 <div class="container agregarVehiculo shadow">
-    <h3 class="tituloForm py-4">Agregar Vehículo</h3>
+    <div class="titleForm py-4">
+        <h2>Agregar Vehículo</h2>
+        <a href="/" class="btn btn-light btnHome">
+            <img src="{{asset('assets/img/Home.png')}}" alt="">
+        </a>
+    </div>
     <form action="{{ route('vehiculos.store') }}" method="POST" class="formAgregarVehiculo">
         @csrf
 

@@ -24,3 +24,12 @@ footer{
     position: absolute;
     bottom: 0;
 }
+
+.btnHome img{
+    width: 30px;
+}
+
+.titleForm{
+    display: flex;
+    justify-content: space-between;
+}
