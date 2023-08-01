@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [VehiculoController::class, 'index'])->name('vehiculos.index');
     Route::get('/vehiculos/agregar', [VehiculoController::class, 'create'])->name('vehiculos.agregar');
     Route::post('/vehiculos', [VehiculoController::class, 'store'])->name('vehiculos.store');
+    Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
+    Route::get('/perfil/editar', [PerfilController::class, 'edit'])->name('perfil.edit');
 });

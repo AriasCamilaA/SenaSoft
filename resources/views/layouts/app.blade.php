@@ -57,7 +57,7 @@
                                     <a class="dropdown-item" href="{{ route('vehiculos.agregar') }}">Agregar vehiculo</a>
                                 </li>
                                 <li id="editarPerfilOption" style="display: none;">
-                                    <a class="dropdown-item" href="">Editar perfil</a>
+                                    <a class="dropdown-item" href="{{ route('perfil.edit') }}">Editar perfil</a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
