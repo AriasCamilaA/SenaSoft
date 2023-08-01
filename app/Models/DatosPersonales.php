@@ -12,13 +12,18 @@ class DatosPersonales extends Model
     protected $primaryKey = 'data_id';
     public $timestamps = false;
 
+    protected $fillable = [
+        'data_nombre',
+        'data_apellido',
+        'data_tipo_id',
+        'data_numero_id',
+        'data_telefono',
+        'data_correo',
+        'usu_id_fk',
+    ];
+
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'usu_id_fk', 'usu_id');
-    }
-
-    public function vehiculos()
-    {
-        return $this->hasMany(Vehiculo::class, 'data_id_fk', 'data_id');
+        return $this->belongsTo(User::class, 'usu_id_fk', 'usu_id');
     }
 }

@@ -2,28 +2,18 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
-<label class="btn" for="option5">Checked</label>
-
-<input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off">
-<label class="btn" for="option6">Radio</label> --}}
 
 <div class="container">
     <div class="filtros">
         <h4>Filtros</h4>
         <h5 class="filtro_title">
             → Categoria
-            <input type="radio" class="btn-check" name="tipoFilto" id="categoria" autocomplete="off" checked>
-            <label class="radioFiltro btn btn btn-outline-primary" for="categoria"></label>
         </h5>
-            <button type="button"
-            class="categoria btn btn-outline-primary">primera</button><button type="button"
-            class="categoria btn btn-outline-primary">segunda</button><button type="button"
-            class="categoria btn btn-outline-primary">tercera</button>
+        @foreach ($categorias as $categoria)
+            <a href="{{ route('vehiculos.categoria', $categoria->cat_id) }}" class="btn btn-outline-primary">{{ $categoria->cat_tipo }}</a>
+        @endforeach
         <h5 class="filtro_title">
             → Precio
-            <input type="radio" class="btn-check" name="tipoFilto" id="precio" autocomplete="off" >
-            <label class="radioFiltro btn btn-outline-primary" for="precio"></label>
         </h5>
     </div>
     <div class="vehiculos">
@@ -36,20 +26,72 @@
                     <th>Color</th>
                     <th>Estado</th>
                     <th>Precio</th>
+                    <th>Telefono</th>
                     <th>Detalles</th>
+                    <th class="d-none">Categoria</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($vehiculos as $vehiculo)
                 <tr>
-                    <td>2013</td>
-                    <td>Chevrolet Aveo</td>
-                    <td>Azul</td>
-                    <td>Nuevo</td>
-                    <td>25000000</td>
-                    <td><button type="button" class="btn btn-primary">Ver Vendedor</button></td>
+                    <td>{{ $vehiculo->veh_modelo }}</td>
+                    <td>{{ $vehiculo->veh_marca }}</td>
+                    <td>{{ $vehiculo->veh_color }}</td>
+                    <td>{{ $vehiculo->veh_estado }}</td>
+                    <td>{{ $vehiculo->veh_precio }}</td>
+                    <td>{{ $vehiculo->datosPersonales->data_telefono }}</td>
+                    <td>
+                        <button 
+                        type="button" 
+                        class="btn btn-primary btn-ver-vendedor" 
+                        data-toggle="modal" 
+                        data-target="#modalVendedor"
+                        data-nombre="{{ $vehiculo->datosPersonales->data_nombre }} {{ $vehiculo->datosPersonales->data_apellido }}"
+                        data-telefono="{{ $vehiculo->datosPersonales->data_telefono }}"
+                        data-correo="{{ $vehiculo->datosPersonales->data_correo }}">
+                        Ver Vendedor
+                        </button>
+                    </td>
+                    <td class="d-none">{{ $vehiculo->categoria->cat_tipo }}</td>
                 </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
 </div>
+<!-- Modal para mostrar información del vendedor -->
+<div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedorLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalVendedorLabel">Información del Vendedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Nombre: <span id="nombreVendedor"></span></p>
+                <p>Teléfono: <span id="telefonoVendedor"></span></p>
+                <p>Correo: <span id="correoVendedor"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Función para mostrar la información del vendedor en el modal
+    $('.btn-ver-vendedor').on('click', function () {
+        console.log("HOLAA")
+        var nombre = $(this).data('nombre');
+        var telefono = $(this).data('telefono');
+        var correo = $(this).data('correo');
+        console.log(nombre, telefono, correo)
+        $('#nombreVendedor').text(nombre);
+        $('#telefonoVendedor').text(telefono);
+        $('#correoVendedor').text(correo);
+    });
+</script>
 @endsection

@@ -35,3 +35,9 @@
     overflow: auto;
 }
 
+.btn.active {
+    background-color: var(--bg-oscuro);
+    color: #fff;
+}
+
+

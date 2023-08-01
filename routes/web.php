@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\VehiculoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +23,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     // Aquí van las rutas protegidas que requieren autenticación
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/', VehiculoController::class);
+    // web.php
+    Route::get('/vehiculos/categoria/{cat_id}', [App\Http\Controllers\VehiculoController::class, 'filtrarPorCategoria'])->name('vehiculos.categoria'); 
 });
