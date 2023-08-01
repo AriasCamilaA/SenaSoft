@@ -21,7 +21,7 @@
                     </label>
                 </div>
             @endforeach
-            <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+            <button type="submit" class="btn btn-primary bg-oscuro">Aplicar Filtro</button>
         </form>
         <h5 class="filtro_title">
             → Precio
@@ -35,7 +35,7 @@
                 <span class="input-group-text">$</span>
                 <input type="text" class="form-control" name="precio_maximo" placeholder="Máximo" value="{{ $precioMaximo }}">
             </div>
-            <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+            <button type="submit" class="btn btn-primary bg-oscuro">Aplicar Filtro</button>
         </form>
     </div>
     <div class="vehiculos">
@@ -77,7 +77,7 @@
                         @if (!$request->filled('precio_minimo') && !$request->filled('precio_maximo'))
                             <button 
                             type="button" 
-                            class="btn btn-primary btn-ver-vendedor" 
+                            class="btn btn-primary btn-ver-vendedor bg-oscuro" 
                             data-toggle="modal" 
                             data-target="#modalVendedor"
                             data-nombre="{{ $vehiculo->datosPersonales->data_nombre }} {{ $vehiculo->datosPersonales->data_apellido }}"
@@ -100,17 +100,29 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalVendedorLabel">Información del Vendedor</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
-                <p>Nombre: <span id="nombreVendedor"></span></p>
-                <p>Teléfono: <span id="telefonoVendedor"></span></p>
-                <p>Correo: <span id="correoVendedor"></span></p>
+                <p>
+                    <b>
+                        Nombre: 
+                    </b>
+                    <span id="nombreVendedor"></span>
+                </p>
+                <p>
+                    <b>
+                        Teléfono: 
+                    </b>
+                    <span id="telefonoVendedor"></span>
+                </p>
+                <p>
+                    <b>
+                        Correo: 
+                    </b>
+                    <span id="correoVendedor"></span>
+                </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary bg-oscuro" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

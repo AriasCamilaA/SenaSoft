@@ -33,3 +33,7 @@ footer{
     display: flex;
     justify-content: space-between;
 }
+
+.bg-oscuro{
+    background-color: var(--bg-oscuro) !important ;
+}

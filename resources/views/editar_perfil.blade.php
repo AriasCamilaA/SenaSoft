@@ -34,7 +34,7 @@
             <input type="text" class="form-control" id="correo" name="correo" value="{{ $user->datosPersonales->data_correo }}" required>
         </div>
         <!-- Add more fields to edit other profile data -->
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button type="submit" class="btn btn-primary bg-oscuro">Guardar Cambios</button>
     </form>
 </div>
 @endsection

@@ -55,7 +55,7 @@
             </select>
         </div>
         <input class="d-none" name="data_id_fk" value="{{Auth::user()->datosPersonales->data_id}}">
-        <button type="submit" class="btn btn-primary">Agregar</button>
+        <button type="submit" class="btn btn-primary bg-oscuro">Agregar</button>
     </form>
 </div>
 @endsection

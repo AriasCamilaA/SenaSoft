@@ -38,8 +38,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary ">
-                    {{ __('Login') }}
+                <button type="submit" class="btn btn-primary bg-oscuro">
+                    Iniciar Sesión
                 </button>
 
             </form>
