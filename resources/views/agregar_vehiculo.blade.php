@@ -16,21 +16,21 @@
         <div class="dobleImput">
             <div class="input-group">
                 <span class="input-group-text tituloInput">Placa</span>
-                <input type="text" class="form-control" id="modelo" name="veh_placa" required>
+                <input type="text" class="form-control" id="modelo" name="veh_placa" maxlength="6" placeholder="Ej. ABC123" required>
             </div>
             <div class="input-group">
                 <span class="input-group-text tituloInput">Modelo</span>
-                <input type="number" class="form-control" id="modelo" name="veh_modelo" required>
+                <input type="number" class="form-control" id="modelo" name="veh_modelo" maxlength="4" placeholder="Año" required>
             </div>
         </div>
         <div class="dobleImput">
             <div class="input-group">
                 <span class="input-group-text tituloInput">Marca</span>
-                <input type="text" class="form-control" id="marca" name="veh_marca" required>
+                <input type="text" class="form-control" id="marca" name="veh_marca" maxlength="50" placeholder="Marca" required>
             </div>
             <div class="input-group">
                 <span class="input-group-text tituloInput">Color</span>
-                <input type="text" class="form-control" id="color" name="veh_color" required>
+                <input type="text" class="form-control" id="color" name="veh_color" maxlength="50" placeholder="Color" required>
             </div>
         </div>
         <div class="dobleImput">
@@ -55,7 +55,8 @@
             </select>
         </div>
         <input class="d-none" name="data_id_fk" value="{{Auth::user()->datosPersonales->data_id}}">
-        <button type="submit" class="btn btn-primary bg-oscuro">Agregar</button>
+        <button type="submit" class="btn btn-primary bg-oscuro mb-4">Agregar</button>
+
     </form>
 </div>
 @endsection
