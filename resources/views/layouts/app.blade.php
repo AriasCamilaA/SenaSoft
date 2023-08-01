@@ -54,7 +54,7 @@
                                     </select>
                                 </li>
                                 <li id="agregarVehiculoOption" style="display: none;">
-                                    <a class="dropdown-item" href="">Agregar vehiculo</a>
+                                    <a class="dropdown-item" href="{{ route('vehiculos.agregar') }}">Agregar vehiculo</a>
                                 </li>
                                 <li id="editarPerfilOption" style="display: none;">
                                     <a class="dropdown-item" href="">Editar perfil</a>
