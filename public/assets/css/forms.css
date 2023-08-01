@@ -1,0 +1,13 @@
+.main{
+    display: flex;
+    align-items: center;
+}
+
+.containerLogin{
+    max-width: 600px !important;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+}

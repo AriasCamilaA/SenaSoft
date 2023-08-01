@@ -1,0 +1,22 @@
+:root{
+    --bg-oscuro: #647d91;
+    --blanco: #ffffff;
+}
+
+.navbar-brand img{
+    height: 1.5em;
+}
+
+footer, .menuSuperior{
+    background-color: var(--bg-oscuro);
+    color: var(--blanco);
+}
+
+footer{
+    display: flex;
+    width: -webkit-fill-available;
+    padding: 16px;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+}
