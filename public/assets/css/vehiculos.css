@@ -6,7 +6,7 @@
 .filtros{
     display: flex;
     flex-direction: column;
-    width: 12em;
+    width: 14em;
     border-right: 3px #F2F2F2 solid;
     padding: 8px;
     gap: 8px;
@@ -40,4 +40,14 @@
     color: #fff;
 }
 
+.titiloFiltros{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
 
+.titiloFiltros a{
+    height: 2em;
+    width: 2em;
+    padding: inherit;
+}

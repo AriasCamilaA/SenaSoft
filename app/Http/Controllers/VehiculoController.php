@@ -10,18 +10,23 @@ use App\Models\Categoria;
 
 class VehiculoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categorias = Categoria::all();
-        $vehiculos = Vehiculo::with(['categoria', 'datosPersonales.usuario'])->get();
-        return view('home', compact('vehiculos', 'categorias'));
+        $precioMinimo = $request->filled('precio_minimo') ? $request->input('precio_minimo') : 0;
+        $precioMaximo = $request->filled('precio_maximo') ? $request->input('precio_maximo') : Vehiculo::max('veh_precio');
+        $categoriaId = $request->input('categoria');
+
+        $query = Vehiculo::with(['categoria', 'datosPersonales.usuario'])
+            ->whereBetween('veh_precio', [$precioMinimo, $precioMaximo]);
+
+        if ($categoriaId) {
+            $query->where('cat_id_fk', $categoriaId);
+        }
+
+        $vehiculos = $query->get();
+
+        return view('home', compact('vehiculos', 'categorias', 'precioMinimo', 'precioMaximo', 'categoriaId', 'request'));
     }
 
-    public function filtrarPorCategoria($cat_id)
-    {
-        $categoria = Categoria::findOrFail($cat_id);
-        $vehiculos = $categoria->vehiculos;
-        $categorias = Categoria::all();
-        return view('categoria', compact('vehiculos', 'categoria', 'categorias'));
-    }
 }

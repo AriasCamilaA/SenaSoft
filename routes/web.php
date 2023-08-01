@@ -23,7 +23,9 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     // Aquí van las rutas protegidas que requieren autenticación
-    Route::resource('/', VehiculoController::class);
+    // Route::resource('/', VehiculoController::class);
+    Route::get('/', [VehiculoController::class, 'index'])->name('vehiculos.index');
+
     // web.php
     Route::get('/vehiculos/categoria/{cat_id}', [App\Http\Controllers\VehiculoController::class, 'filtrarPorCategoria'])->name('vehiculos.categoria'); 
 });

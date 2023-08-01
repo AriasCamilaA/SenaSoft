@@ -5,16 +5,38 @@
 
 <div class="container">
     <div class="filtros">
-        <h4>Filtros</h4>
+        <div class="titiloFiltros">
+            <h4>Filtros</h4>
+            <a class="btn btn-danger" href="/">x</a>
+        </div>
         <h5 class="filtro_title">
             → Categoria
         </h5>
-        @foreach ($categorias as $categoria)
-            <a href="{{ route('vehiculos.categoria', $categoria->cat_id) }}" class="btn btn-outline-primary">{{ $categoria->cat_tipo }}</a>
-        @endforeach
+        <form action="{{ route('vehiculos.index') }}" method="GET">
+            @foreach ($categorias as $categoria)
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="categoria" value="{{ $categoria->cat_id }}" id="categoria_{{ $categoria->cat_id }}" {{ $categoriaId == $categoria->cat_id ? 'checked' : '' }}>
+                    <label class="form-check-label" for="categoria_{{ $categoria->cat_id }}">
+                        {{ $categoria->cat_tipo }}
+                    </label>
+                </div>
+            @endforeach
+            <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+        </form>
         <h5 class="filtro_title">
             → Precio
         </h5>
+        <form action="{{ route('vehiculos.index') }}" method="GET">
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" name="precio_minimo" placeholder="Mínimo" value="{{ $precioMinimo }}">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" name="precio_maximo" placeholder="Máximo" value="{{ $precioMaximo }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+        </form>
     </div>
     <div class="vehiculos">
         <h3>Vehículos</h3>
@@ -26,8 +48,12 @@
                     <th>Color</th>
                     <th>Estado</th>
                     <th>Precio</th>
-                    <th>Telefono</th>
-                    <th>Detalles</th>
+                    @if ($request->filled('precio_minimo') && $request->filled('precio_maximo'))
+                        <th>Telefono</th>
+                    @endif
+                    @if (!$request->filled('precio_minimo') && !$request->filled('precio_maximo'))
+                        <th>Detalles</th>
+                    @endif
                     <th class="d-none">Categoria</th>
                 </tr>
             </thead>
@@ -39,18 +65,22 @@
                     <td>{{ $vehiculo->veh_color }}</td>
                     <td>{{ $vehiculo->veh_estado }}</td>
                     <td>{{ $vehiculo->veh_precio }}</td>
-                    <td>{{ $vehiculo->datosPersonales->data_telefono }}</td>
+                    @if ($request->filled('precio_minimo') && $request->filled('precio_maximo'))
+                        <td>{{ $vehiculo->datosPersonales->data_telefono }}</td>
+                    @endif
                     <td>
-                        <button 
-                        type="button" 
-                        class="btn btn-primary btn-ver-vendedor" 
-                        data-toggle="modal" 
-                        data-target="#modalVendedor"
-                        data-nombre="{{ $vehiculo->datosPersonales->data_nombre }} {{ $vehiculo->datosPersonales->data_apellido }}"
-                        data-telefono="{{ $vehiculo->datosPersonales->data_telefono }}"
-                        data-correo="{{ $vehiculo->datosPersonales->data_correo }}">
-                        Ver Vendedor
-                        </button>
+                        @if (!$request->filled('precio_minimo') && !$request->filled('precio_maximo'))
+                            <button 
+                            type="button" 
+                            class="btn btn-primary btn-ver-vendedor" 
+                            data-toggle="modal" 
+                            data-target="#modalVendedor"
+                            data-nombre="{{ $vehiculo->datosPersonales->data_nombre }} {{ $vehiculo->datosPersonales->data_apellido }}"
+                            data-telefono="{{ $vehiculo->datosPersonales->data_telefono }}"
+                            data-correo="{{ $vehiculo->datosPersonales->data_correo }}">
+                            Ver Vendedor
+                            </button>
+                        @endif
                     </td>
                     <td class="d-none">{{ $vehiculo->categoria->cat_tipo }}</td>
                 </tr>
