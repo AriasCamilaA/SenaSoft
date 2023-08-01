@@ -23,6 +23,8 @@ class PerfilController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
+            'telefono' => 'required|string|max:255',
+            'correo' => 'required|string|max:255',
             // Add more validation rules for other fields
         ]);
 
@@ -30,6 +32,8 @@ class PerfilController extends Controller
         $datosPersonales->update([
             'data_nombre' => $request->input('nombre'),
             'data_apellido' => $request->input('apellido'),
+            'data_telefono' => $request->input('telefono'),
+            'data_correo' => $request->input('correo'),
             // Update more fields as needed
         ]);
 

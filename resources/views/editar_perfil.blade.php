@@ -14,6 +14,14 @@
             <label for="apellido" class="form-label">Apellido</label>
             <input type="text" class="form-control" id="apellido" name="apellido" value="{{ $user->datosPersonales->data_apellido }}" required>
         </div>
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $user->datosPersonales->data_telefono }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="text" class="form-control" id="correo" name="correo" value="{{ $user->datosPersonales->data_correo }}" required>
+        </div>
         <!-- Add more fields to edit other profile data -->
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </form>
