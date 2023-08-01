@@ -51,3 +51,36 @@
     width: 2em;
     padding: inherit;
 }
+
+/* Registrar vehículo */
+.agregarVehiculo{
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+}
+
+.formAgregarVehiculo{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tituloForm{
+    text-align: center;
+}
+
+.tituloInput{
+    width: 6em;
+}
+
+.dobleImput{
+    display: flex;
+    gap: 2em;
+}
+
+@media screen and (max-width: 600px) {
+    .dobleImput{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

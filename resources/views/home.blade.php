@@ -40,6 +40,11 @@
     </div>
     <div class="vehiculos">
         <h3>Vehículos</h3>
+        @if(session('success'))
+            <div class="alert alert-success" id="success-alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table table-hover">
             <thead>
                 <tr>

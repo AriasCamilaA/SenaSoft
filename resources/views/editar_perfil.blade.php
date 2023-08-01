@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <h2>Editar Perfil</h2>
+    @if(session('success'))
+        <div class="alert alert-success" id="success-alert">
+            {{ session('success') }}
+        </div>
+    @endif
+    
     <form action="{{ route('perfil.update') }}" method="POST">
         @csrf
         @method('PUT')

@@ -122,6 +122,17 @@
         });
     });
 </script>
+<script>
+    // Function to fade out the success message
+    function fadeOutSuccessMessage() {
+        $("#success-alert").fadeOut(3000); // 5000 milliseconds = 5 seconds
+    }
+
+    // Fade out the success message after 5 seconds
+    $(document).ready(function() {
+        fadeOutSuccessMessage();
+    });
+</script>
 
 </body>
 
