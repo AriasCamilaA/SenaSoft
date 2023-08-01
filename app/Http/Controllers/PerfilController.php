@@ -10,6 +10,7 @@ class PerfilController extends Controller
 {
     public function edit()
     {
+        // Obtenemos todos los datos para enviarlos a la vista y poder mostrarlos es los campos
         $user = auth()->user();
         return view('editar_perfil', compact('user'));
     }
@@ -19,16 +20,16 @@ class PerfilController extends Controller
         $user = auth()->user();
         $datosPersonales = $user->datosPersonales;
 
-        // Validation rules for the form fields
+        // Valido los campos
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'telefono' => 'required|string|max:255',
+            'telefono' => 'required|numeric|digits:10',
             'correo' => 'required|string|max:255',
-            // Add more validation rules for other fields
         ]);
+        
 
-        // Update the user's profile data
+        // Actualizamos los campos del Usuario
         $datosPersonales->update([
             'data_nombre' => $request->input('nombre'),
             'data_apellido' => $request->input('apellido'),

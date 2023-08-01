@@ -13,32 +13,36 @@ class VehiculoController extends Controller
     public function index(Request $request)
     {
         $categorias = Categoria::all();
-        $precioMinimo = $request->filled('precio_minimo') ? $request->input('precio_minimo') : 0;
-        $precioMaximo = $request->filled('precio_maximo') ? $request->input('precio_maximo') : Vehiculo::max('veh_precio');
+        // Obtememos el valor que esta en los input para el filtro de precio
+        $precioMinimo = $request->filled('precio_minimo') ? $request->input('precio_minimo') : 0; // Si no se ingresa toma 0
+        $precioMaximo = $request->filled('precio_maximo') ? $request->input('precio_maximo') : Vehiculo::max('veh_precio'); // Si no se ingresa toma el máximo de mi tabla
         $categoriaId = $request->input('categoria');
 
+        // Almacenamos los datos de vehículo, categoría, datos personales en el rango de los precios
         $query = Vehiculo::with(['categoria', 'datosPersonales.usuario'])
             ->whereBetween('veh_precio', [$precioMinimo, $precioMaximo]);
 
+        // Filtramos dado un id de categoría
         if ($categoriaId) {
             $query->where('cat_id_fk', $categoriaId);
         }
 
         $vehiculos = $query->get();
 
+        // Finalmente retornamos todos estos datos para poder utilizarlo en mi home que muestra la tabla de vehiculos con filtros
         return view('home', compact('vehiculos', 'categorias', 'precioMinimo', 'precioMaximo', 'categoriaId', 'request'));
     }
 
     public function create()
     {
+        // Acá tomamos las categorias para que puedan ser utilizadas al momento de agregar el vehículos
         $categorias = Categoria::all();
-        // Aquí puedes agregar la lógica necesaria para mostrar el formulario de agregar vehículo
-        return view('agregar_vehiculo', compact('categorias')); // Reemplaza 'agregar_vehiculo' con el nombre de tu vista para agregar vehículos
+        return view('agregar_vehiculo', compact('categorias'));
     }
 
     public function store(Request $request)
 {
-    // Validate the input data
+    // Agregamos el nuevo vehículo
     $vehiculo = new Vehiculo;
     $vehiculo->veh_placa=$request->input('veh_placa');
     $vehiculo->veh_modelo=$request->input('veh_modelo');
@@ -50,6 +54,6 @@ class VehiculoController extends Controller
     $vehiculo->data_id_fk=$request->input('data_id_fk');
     $vehiculo->save();
 
-    return redirect()->route('vehiculos.index')->with('success', 'Vehicle added successfully!');
+    return redirect()->route('vehiculos.index')->with('success', 'Vehículo Agregado correctamente!');
 }
 }
